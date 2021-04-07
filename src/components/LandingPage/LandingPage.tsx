@@ -1,5 +1,7 @@
 import React from "react";
 import { ContainerWithBackground } from "../shared/ContainerWithBackground";
+import left from "../../assets/left.webp";
+import right from "../../assets/right.webp";
 
 export const LandingPage: React.FC = () => {
   return (
@@ -27,15 +29,8 @@ export const LandingPage: React.FC = () => {
       </button>
 
       <div className="flex mt-auto w-full justify-between">
-        <div
-          className="h-full w-1/4 border-dashed flex justify-center items-center text-2xl px-4"
-          style={{ height: "400px" }}
-        >
-          <img
-            src="https://media1.tenor.com/images/f675e2010ff762d5aea381cbe07940cf/tenor.gif?itemid=13706133"
-            className="w-full h-full"
-            alt="left"
-          />
+        <div className="h-full w-1/4 border-dashed flex justify-center items-center text-2xl px-4">
+          <img src={left} className="w-full h-full" alt="left" />
         </div>
 
         <div className="flex flex-col items-start bg-yellow-300 rounded-2xl p-4 mt-auto">
@@ -54,11 +49,7 @@ export const LandingPage: React.FC = () => {
         </div>
 
         <div className="h-full w-1/4 border-dashed flex justify-center items-center text-2xl px-4">
-          <img
-            src="https://media1.tenor.com/images/ef7726e72859cda6b10b8b5f78b27b1f/tenor.gif?itemid=12587122"
-            className="w-full h-full"
-            alt="right"
-          />
+          <img src={right} className="w-full h-full" alt="right" />
         </div>
       </div>
     </ContainerWithBackground>

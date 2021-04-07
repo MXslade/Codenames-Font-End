@@ -6,6 +6,7 @@ import { Footer } from "./components/Footer/Footer";
 import { GameRulesPage } from "./components/GameRulesPage/GameRulesPage";
 import { SignIn } from "./components/SignInUp/SignIn";
 import { SignUp } from "./components/SignInUp/SignUp";
+import { Profile } from "./components/Profile/Profile";
 
 const App: React.FC = () => {
   return (
@@ -23,6 +24,9 @@ const App: React.FC = () => {
         </Route>
         <Route path="/sign-up" exact>
           <SignUp />
+        </Route>
+        <Route path="/profile" exact>
+          <Profile />
         </Route>
       </Switch>
       <Footer />
