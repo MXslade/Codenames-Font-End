@@ -10,13 +10,15 @@ interface Props {
 export const PrivateRoute: React.FC<Props> = ({ path, exact, children }) => {
   const { isAuthenticated } = useContext(AuthContext);
 
-  if (isAuthenticated) {
-    return (
-      <Route path={path} exact={exact}>
-        {children}
-      </Route>
-    );
-  }
-
-  return <Redirect to={{ pathname: "/sign-in" }} />;
+  return (
+    <>
+      {isAuthenticated ? (
+        <Route path={path} exact={exact}>
+          {children}
+        </Route>
+      ) : (
+        <Redirect to={{ pathname: "/sign-in" }} />
+      )}
+    </>
+  );
 };

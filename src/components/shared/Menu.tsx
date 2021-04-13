@@ -23,16 +23,18 @@ export const Menu: React.FC<MenuProps> = (props) => {
 interface MenuItemProps {
   icon?: IconProp;
   className?: string;
+  onClick?: () => void;
 }
 
 export const MenuItem: React.FC<MenuItemProps> = (props) => {
-  const { icon, className } = props;
+  const { icon, className, onClick } = props;
 
   return (
     <li
       className={`capitalize hover:bg-yellow-600 px-4 py-2 flex items-center ${
         className ? className : ""
       }`}
+      onClick={onClick}
     >
       {icon && (
         <div className="w-10 flex items-center">
