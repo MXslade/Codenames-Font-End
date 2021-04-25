@@ -1,9 +1,16 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { ContainerWithBackground } from "../shared/ContainerWithBackground";
 import left from "../../assets/left.webp";
 import right from "../../assets/right.webp";
 
 export const LandingPage: React.FC = () => {
+  const history = useHistory();
+
+  const handlePlayClick = () => {
+    history.push("/game-room");
+  };
+
   return (
     <ContainerWithBackground>
       <span
@@ -24,7 +31,10 @@ export const LandingPage: React.FC = () => {
         Play with your friends.
       </span>
 
-      <button className="mt-8 uppercase text-3xl font-bold p-2 rounded-lg shadow-lg bg-gradient-to-r from-yellow-300 to-yellow-600 hover:bg-gradient-to-r hover:from-yellow-600 hover:to-yellow-300">
+      <button
+        className={`mt-8 uppercase text-3xl font-bold p-2 rounded-lg shadow-lg bg-gradient-to-r from-yellow-300 to-yellow-600 hover:bg-gradient-to-r hover:from-yellow-600 hover:to-yellow-300`}
+        onClick={handlePlayClick}
+      >
         create game
       </button>
 

@@ -3,10 +3,11 @@ import React, { CSSProperties } from "react";
 interface Props {
   className?: string;
   style?: CSSProperties;
+  onClick?: () => void;
 }
 
 export const Button: React.FC<Props> = (props) => {
-  const { className, style } = props;
+  const { className, style, onClick } = props;
 
   return (
     <button
@@ -14,6 +15,7 @@ export const Button: React.FC<Props> = (props) => {
         className ? className : ""
       }`}
       style={style}
+      onClick={onClick}
     >
       {props.children}
     </button>

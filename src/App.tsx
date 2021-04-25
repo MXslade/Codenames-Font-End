@@ -8,6 +8,7 @@ import { SignIn } from "./components/SignInUp/SignIn";
 import { SignUp } from "./components/SignInUp/SignUp";
 import { Profile } from "./components/Profile/Profile";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
+import { GameRoom } from "./components/GameRoom/GameRoom";
 import { IUser } from "./utils/interfaces";
 import { AuthApi } from "./utils/api";
 import { jwtTokenKeyName } from "./utils/constants";
@@ -82,6 +83,9 @@ const App: React.FC = () => {
               </Route>
               <Route path="/sign-up" exact>
                 <SignUp />
+              </Route>
+              <Route path="/game-room" exact>
+                <GameRoom />
               </Route>
               <PrivateRoute path="/profile" exact>
                 <Profile />
