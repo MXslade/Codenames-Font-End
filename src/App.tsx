@@ -12,6 +12,7 @@ import { GameRoom } from "./components/GameRoom/GameRoom";
 import { IUser } from "./utils/interfaces";
 import { AuthApi } from "./utils/api";
 import { jwtTokenKeyName } from "./utils/constants";
+import { GameRoomList } from "./components/GameRoom/GameRoomList";
 
 interface IAuthContext {
   isAuthenticated: boolean;
@@ -83,6 +84,9 @@ const App: React.FC = () => {
               </Route>
               <Route path="/sign-up" exact>
                 <SignUp />
+              </Route>
+              <Route path="/game-room-list" exact>
+                <GameRoomList />
               </Route>
               <Route path="/game-room" exact>
                 <GameRoom />

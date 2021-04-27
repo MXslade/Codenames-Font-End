@@ -2,25 +2,34 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import { AuthContext } from "../../App";
+import { IGameBoardConfig } from "../../utils/interfaces";
 import { Button } from "../shared/Button";
 import { Input } from "../shared/Input";
+import { GameBoard } from "./GameBoard";
+import { SelectingNicknamePanel } from "./SelectingNicknamePanel";
+import { defaultGameBoardConfig } from "../../utils/constants";
 
 export const GameRoom: React.FC = () => {
   const { isAuthenticated } = useContext(AuthContext);
 
   const [isConnected, setIsConnected] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
+  const [config, setConfig] = useState<IGameBoardConfig>(
+    defaultGameBoardConfig
+  );
 
   const stompClient = useRef<Stomp.Client | null>(null);
 
   const connect = () => {
-    const socket = new SockJS("http://localhost:8080/gs-guide-websocket");
+    const socket = new SockJS("http://localhost:8080/game-room");
     stompClient.current = Stomp.over(socket);
     stompClient.current.connect({}, (frame: any) => {
       setIsConnected(true);
       console.log("Connected: ", frame);
-      stompClient.current?.subscribe("/topic/greetings", (greetings) => {
-        console.log(greetings);
+      stompClient.current?.subscribe("/game-broadcaster", (response) => {
+        const message = JSON.parse(response.body);
+        const newConfig = JSON.parse(message.content);
+        setConfig(newConfig);
       });
     });
   };
@@ -39,21 +48,15 @@ export const GameRoom: React.FC = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (stompClient) {
-  //     stompClient.connect({}, (frame) => {
-  //       setIsConnected(true);
-  //       //console.log("Connected: ", frame);
-  //       stompClient.subscribe(
-  //         "http://localhost:8080/topic/greetings",
-  //         (message) => {
-  //           console.log("Something is happening");
-  //           showMessage(JSON.parse(message.body).content);
-  //         }
-  //       );
-  //     });
-  //   }
-  // }, [stompClient]);
+  const sendUpdatedConfig = (config: IGameBoardConfig) => {
+    if (stompClient.current) {
+      stompClient.current.send(
+        "/app/update-config",
+        {},
+        JSON.stringify({ name: "test", content: JSON.stringify(config) })
+      );
+    }
+  };
 
   useEffect(() => {
     connect();
@@ -64,18 +67,22 @@ export const GameRoom: React.FC = () => {
       className="flex items-center justify-center bg-yellow-100 flex-col"
       style={{ minHeight: "800px" }}
     >
-      {/* {!isAuthenticated ? (
+      {!isAuthenticated ? (
         <SelectingNicknamePanel />
       ) : (
-        <div>Actual Game Room</div>
-      )} */}
-      {isConnected && <div className="text-2xl">Connected</div>}
+        <>
+          {isConnected && (
+            <GameBoard config={config} sendUpdatedConfig={sendUpdatedConfig} />
+          )}
+        </>
+      )}
+      {/* {isConnected && <div className="text-2xl">Connected</div>}
       <Input
         placeholder="Input some value"
         value={message}
         onChange={(event) => setMessage(event.target.value)}
       />
-      <Button onClick={handleSubmitClick}>Submit</Button>
+      <Button onClick={handleSubmitClick}>Submit</Button> */}
     </div>
   );
 };

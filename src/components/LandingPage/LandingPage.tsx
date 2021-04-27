@@ -35,7 +35,7 @@ export const LandingPage: React.FC = () => {
         className={`mt-8 uppercase text-3xl font-bold p-2 rounded-lg shadow-lg bg-gradient-to-r from-yellow-300 to-yellow-600 hover:bg-gradient-to-r hover:from-yellow-600 hover:to-yellow-300`}
         onClick={handlePlayClick}
       >
-        create game
+        join or create game
       </button>
 
       <div className="flex mt-auto w-full justify-between">

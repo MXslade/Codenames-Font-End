@@ -11,3 +11,14 @@ export interface IUser {
   fullName: string;
   roles?: IRole[];
 }
+
+export interface IGameBoardCell {
+  row: number;
+  column: number;
+  color: string;
+}
+
+export interface IGameBoardConfig {
+  id?: number;
+  config: IGameBoardCell[];
+}
