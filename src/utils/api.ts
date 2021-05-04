@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IUser } from "./interfaces";
+import { IGameRoom, IUser } from "./interfaces";
 import { jwtTokenKeyName } from "./constants";
 
 const instance = axios.create({
@@ -37,5 +37,14 @@ export const AuthApi = {
 
   getUserData() {
     return instance.get("user-data");
+  },
+};
+
+export const GameRoomApi = {
+  getAllGameRooms() {
+    return instance.get("game-rooms");
+  },
+  createGameRoom(gameRoom: IGameRoom) {
+    return instance.post("game-rooms", gameRoom);
   },
 };

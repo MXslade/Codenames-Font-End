@@ -11,7 +11,7 @@ export const Button: React.FC<Props> = (props) => {
 
   return (
     <button
-      className={`bg-pink-700 text-white px-6 py-2 rounded-2xl text-lg font-semibold border-white border-2 hover:bg-pink-800 ${
+      className={`bg-pink-700 text-white px-6 py-2 rounded-2xl text-lg font-semibold border-white border-2 hover:bg-pink-800 focus:outline-none ${
         className ? className : ""
       }`}
       style={style}

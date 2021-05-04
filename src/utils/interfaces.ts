@@ -22,3 +22,12 @@ export interface IGameBoardConfig {
   id?: number;
   config: IGameBoardCell[];
 }
+
+export interface IGameRoom {
+  id?: number;
+  name: string;
+  config: string | null;
+  maxNumberOfPlayers: number;
+  language: string;
+  active: boolean;
+}

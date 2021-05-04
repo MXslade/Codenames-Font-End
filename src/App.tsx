@@ -88,7 +88,7 @@ const App: React.FC = () => {
               <Route path="/game-room-list" exact>
                 <GameRoomList />
               </Route>
-              <Route path="/game-room" exact>
+              <Route path="/game-room/:id" exact>
                 <GameRoom />
               </Route>
               <PrivateRoute path="/profile" exact>

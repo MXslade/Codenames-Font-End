@@ -8,7 +8,7 @@ export const LandingPage: React.FC = () => {
   const history = useHistory();
 
   const handlePlayClick = () => {
-    history.push("/game-room");
+    history.push("/game-room-list");
   };
 
   return (

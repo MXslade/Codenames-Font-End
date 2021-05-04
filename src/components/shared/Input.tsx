@@ -1,11 +1,7 @@
 import React from "react";
 
-interface Props {
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
-  placeholder?: string;
-  type?: "text" | "number" | "email" | "password";
-  value?: string;
-  onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
 }
 
 export const Input: React.FC<Props> = ({
