@@ -7,6 +7,7 @@ import { IGameBoardConfig } from "../../utils/interfaces";
 import { GameBoard } from "./GameBoard";
 import { SelectingNicknamePanel } from "./SelectingNicknamePanel";
 import { defaultGameBoardConfig } from "../../utils/constants";
+import { GameRoomApi } from "../../utils/api";
 
 export const GameRoom: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -41,7 +42,7 @@ export const GameRoom: React.FC = () => {
         `/app/update-config/${id}`,
         {},
         JSON.stringify({
-          gameRoomId: "1",
+          gameRoomId: id,
           users: "test",
           config: JSON.stringify(config),
         })
@@ -49,8 +50,22 @@ export const GameRoom: React.FC = () => {
     }
   };
 
+  const getGameRoomData = () => {
+    GameRoomApi.getGameRoom(parseInt(id))
+      .then((response) => {
+        if (response.data.config) {
+          const newConfig = JSON.parse(response.data.config);
+          setConfig(newConfig);
+        }
+      })
+      .catch((error) => {
+        alert("Something went wrong while fetching data from server!");
+      });
+  };
+
   useEffect(() => {
     connect();
+    getGameRoomData();
   }, []);
 
   return (

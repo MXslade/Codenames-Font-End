@@ -32,6 +32,8 @@ export const GameRoomList: React.FC = () => {
     setIsLoading(true);
     GameRoomApi.getAllGameRooms()
       .then((response) => {
+        const temp = response.data;
+        temp.sort((first: any, second: any) => first.id - second.id);
         setGameRooms(response.data);
       })
       .catch((error) => {

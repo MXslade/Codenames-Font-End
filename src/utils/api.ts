@@ -47,4 +47,7 @@ export const GameRoomApi = {
   createGameRoom(gameRoom: IGameRoom) {
     return instance.post("game-rooms", gameRoom);
   },
+  getGameRoom(id: number) {
+    return instance.get(`game-room/${id}`);
+  },
 };
