@@ -85,12 +85,12 @@ const App: React.FC = () => {
               <Route path="/sign-up" exact>
                 <SignUp />
               </Route>
-              <Route path="/game-room-list" exact>
+              <PrivateRoute path="/game-room-list" exact>
                 <GameRoomList />
-              </Route>
-              <Route path="/game-room/:id" exact>
+              </PrivateRoute>
+              <PrivateRoute path="/game-room/:id" exact>
                 <GameRoom />
-              </Route>
+              </PrivateRoute>
               <PrivateRoute path="/profile" exact>
                 <Profile />
               </PrivateRoute>

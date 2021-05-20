@@ -1,32 +1,30 @@
 import React from "react";
-import { IGameBoardCell, IGameBoardConfig } from "../../utils/interfaces";
+import { TeamList } from "./TeamList";
+import { IMessageDto } from "../../utils/interfaces";
 import { GameBoardCell } from "./GameBoardCell";
 
 interface Props {
-  config: IGameBoardConfig;
-  sendUpdatedConfig: (config: IGameBoardConfig) => void;
+  config: IMessageDto;
 }
 
-export const GameBoard: React.FC<Props> = ({ config, sendUpdatedConfig }) => {
-  const handleCellClick = (cell: IGameBoardCell) => {
-    const copy = { ...config };
-    copy.config[cell.row * 5 + cell.column] = {
-      row: cell.row,
-      column: cell.column,
-      color: "red",
-    };
-    sendUpdatedConfig(copy);
-  };
-
+export const GameBoard: React.FC<Props> = ({ config }) => {
   return (
-    <div className="grid grid-cols-5 w-full h-full">
-      {config.config.map((configItem, index) => (
-        <GameBoardCell
-          cell={configItem}
-          onClick={handleCellClick}
-          key={index}
+    <div className="w-full h-full grid grid-cols-6 gap-4 p-4 ">
+      <div className="col-span-1">
+        <TeamList members={config.reds} teamColor="red" cap={config.redsCap} />
+      </div>
+      <div className="col-span-4 grid grid-cols-5 grid-rows-5 gap-4">
+        {config.board.map((cell) => (
+          <GameBoardCell key={cell.row + " " + cell.col} cell={cell} />
+        ))}
+      </div>
+      <div className="col-span-1">
+        <TeamList
+          members={config.blues}
+          teamColor="blue"
+          cap={config.bluesCap}
         />
-      ))}
+      </div>
     </div>
   );
 };

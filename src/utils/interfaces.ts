@@ -32,3 +32,23 @@ export interface IGameRoom {
   active: boolean;
   users: IUser[];
 }
+
+export interface ICardDto {
+  row: number;
+  col: number;
+  text: string;
+  isOpened: boolean;
+  underneath: "BLUE_AGENT" | "RED_AGENT" | "ORDINARY" | "KILLER";
+}
+
+// aka config which I am gonna send back and forth between users and server
+export interface IMessageDto {
+  gameRoomId: string;
+  reds: number[];
+  blues: number[];
+  board: ICardDto[];
+  turn: "REDS" | "BLUES";
+  redsCap: number | null;
+  bluesCap: number | null;
+  gameStarted: boolean;
+}

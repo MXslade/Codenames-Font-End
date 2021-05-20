@@ -1,19 +1,33 @@
 import React from "react";
-import { IGameBoardCell } from "../../utils/interfaces";
+import { ICardDto, IGameBoardCell } from "../../utils/interfaces";
 
 interface Props {
-  cell: IGameBoardCell;
-  onClick: (cell: IGameBoardCell) => void;
+  cell: ICardDto;
+  // onClick: (cell: IGameBoardCell) => void;
 }
 
-export const GameBoardCell: React.FC<Props> = ({ cell, onClick }) => {
+export const GameBoardCell: React.FC<Props> = ({ cell }) => {
   return (
-    <div
-      className="w-full h-36 border border-black flex items-center justify-center"
-      style={{ backgroundColor: cell.color }}
-      onClick={() => onClick(cell)}
-    >
-      {cell.row} : {cell.column}
-    </div>
+    <>
+      {!cell.isOpened ? (
+        <div
+          className="w-full h-32 border border-gray-700 flex items-center justify-center uppercase font-bold p-3 rounded-lg bg-yellow-100"
+          // onClick={() => onClick(cell)}
+        >
+          <div className="w-full h-full border border-black flex items-center justify-center p-2 rounded-lg flex-col">
+            <div className="w-full h-full flex items-end mb-1">
+              <hr className="w-full bg-gray-500 h-1" />
+            </div>
+            <div className="w-full h-full bg-white flex items-center justify-center">
+              <span>{cell.text}</span>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="w-full h-32 border-gray-700 flex items-center justify-center uppercase font-bold p-3 rounded-lg">
+          {cell.underneath}
+        </div>
+      )}
+    </>
   );
 };
