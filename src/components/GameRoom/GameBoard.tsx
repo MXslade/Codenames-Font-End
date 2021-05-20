@@ -20,8 +20,12 @@ export const GameBoard: React.FC<Props> = ({ config, sendUpdatedConfig }) => {
 
   return (
     <div className="grid grid-cols-5 w-full h-full">
-      {config.config.map((configItem) => (
-        <GameBoardCell cell={configItem} onClick={handleCellClick} />
+      {config.config.map((configItem, index) => (
+        <GameBoardCell
+          cell={configItem}
+          onClick={handleCellClick}
+          key={index}
+        />
       ))}
     </div>
   );

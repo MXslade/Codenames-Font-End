@@ -30,4 +30,5 @@ export interface IGameRoom {
   maxNumberOfPlayers: number;
   language: string;
   active: boolean;
+  users: IUser[];
 }

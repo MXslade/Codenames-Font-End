@@ -26,6 +26,7 @@ export const GameRoomList: React.FC = () => {
     config: null,
     active: true,
     maxNumberOfPlayers: 4,
+    users: [],
   });
 
   const getAllRooms = () => {
@@ -71,6 +72,7 @@ export const GameRoomList: React.FC = () => {
       setIsLoading(true);
       GameRoomApi.createGameRoom(formData)
         .then((response) => {
+          history.push(`/game-room/${response.data.id}`);
           getAllRooms();
         })
         .catch((error) => {
