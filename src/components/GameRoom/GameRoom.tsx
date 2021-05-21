@@ -74,7 +74,7 @@ export const GameRoom: React.FC = () => {
   const getMissingUsers = (missingUserIds: number[]) => {
     GameRoomApi.getUsersByIds(missingUserIds)
       .then((response) => {
-        setUsers(response.data);
+        setUsers([...users].concat(response.data));
       })
       .catch((error) => {
         alert("Something went wrong while loading users data!");
