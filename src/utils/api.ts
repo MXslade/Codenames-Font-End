@@ -50,4 +50,7 @@ export const GameRoomApi = {
   getGameRoom(id: number) {
     return instance.get(`game-room/${id}`);
   },
+  getUsersByIds(userIds: number[]) {
+    return instance.post("users", userIds);
+  },
 };

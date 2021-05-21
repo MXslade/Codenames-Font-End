@@ -37,7 +37,7 @@ export interface ICardDto {
   row: number;
   col: number;
   text: string;
-  isOpened: boolean;
+  opened: boolean;
   underneath: "BLUE_AGENT" | "RED_AGENT" | "ORDINARY" | "KILLER";
 }
 

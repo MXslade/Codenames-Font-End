@@ -16,7 +16,7 @@ interface Props {
 
 export const TeamList: React.FC<Props> = ({ members, teamColor, cap }) => {
   const { currentUser } = useContext(AuthContext);
-  const { config, sendUpdatedConfig } = useContext(GameRoomContext);
+  const { config, sendUpdatedConfig, users } = useContext(GameRoomContext);
 
   const [canJoinAsMember, setCanJoinAsMember] = useState<boolean>(false);
 
@@ -91,8 +91,13 @@ export const TeamList: React.FC<Props> = ({ members, teamColor, cap }) => {
             <div
               key={member}
               className="w-full border border-black bg-gray-400"
+              style={
+                member === currentUser?.id
+                  ? { backgroundColor: "#A7F3D0" }
+                  : undefined
+              }
             >
-              {member}
+              {users.find((user) => user.id === member)?.fullName}
             </div>
           ))}
         </>
@@ -102,7 +107,7 @@ export const TeamList: React.FC<Props> = ({ members, teamColor, cap }) => {
         </div>
       )}
 
-      {canJoinAsMember && (
+      {canJoinAsMember && config && !config.gameStarted && (
         <Button onClick={handleJoinTeamClick}>Join Team</Button>
       )}
 
@@ -110,15 +115,22 @@ export const TeamList: React.FC<Props> = ({ members, teamColor, cap }) => {
         <Title>Team Cap</Title>
       </div>
       {cap ? (
-        <div className="w-full border border-black bg-gray-100 px-2 py-1">
-          {cap}
+        <div
+          className="w-full border border-black bg-gray-100 px-2 py-1"
+          style={
+            cap === currentUser?.id ? { backgroundColor: "#A7F3D0" } : undefined
+          }
+        >
+          {users.find((user) => user.id === cap)?.fullName}
         </div>
       ) : (
         <>
           <div className="w-full border border-black bg-gray-100 px-2 py-1">
             There is no cap
           </div>
-          <Button onClick={handleJoinAsCapClick}>Join As cap</Button>
+          {config && !config.gameStarted && (
+            <Button onClick={handleJoinAsCapClick}>Join As cap</Button>
+          )}
         </>
       )}
     </div>
