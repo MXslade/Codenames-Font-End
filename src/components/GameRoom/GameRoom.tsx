@@ -6,7 +6,6 @@ import { IGameRoom, IMessageDto, IUser } from "../../utils/interfaces";
 import { GameBoard } from "./GameBoard";
 import { Modal } from "../shared/Modal";
 import { GameRoomApi } from "../../utils/api";
-import { config } from "@fortawesome/fontawesome-svg-core";
 
 interface IGameRoomContext {
   users: IUser[];
