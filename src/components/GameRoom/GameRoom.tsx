@@ -33,7 +33,7 @@ export const GameRoom: React.FC = () => {
   const stompClient = useRef<Stomp.Client | null>(null);
 
   const connect = () => {
-    const socket = new SockJS(`http://localhost:8080/game-room/`);
+    const socket = new SockJS(`http://192.168.1.114:8080/game-room/`);
     stompClient.current = Stomp.over(socket);
     stompClient.current.connect({}, (frame: any) => {
       setIsConnected(true);

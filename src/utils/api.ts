@@ -3,7 +3,7 @@ import { IGameRoom, IUser } from "./interfaces";
 import { jwtTokenKeyName } from "./constants";
 
 const instance = axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: "http://192.168.1.114/api",
 });
 
 instance.interceptors.request.use((config) => {
@@ -25,7 +25,7 @@ instance.interceptors.request.use((config) => {
 
 export const AuthApi = {
   authenticate(email: string, password: string) {
-    return axios.post("http://localhost:8080/auth", {
+    return axios.post("http://192.168.1.114/auth", {
       email: email,
       password: password,
     });
